@@ -15627,8 +15627,29 @@ Validation loss: 0.13072754, accuracy: 98.66%
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Q5---Solution-Approach">Q5 - Solution Approach<a class="anchor-link" href="#Q5---Solution-Approach">&#182;</a></h3><p>As visible from the above training logs, this network with the choice of hyperparameters was able to achieve 98.57% validation accuracy. There is definitely a possibility of improving the accuracy further by exploring other choices of hyperparameters and adding synthetic data.<br>
-I also tried to use the Spatial Transformer network approach but could not get it to work.</p>
+<h3 id="Q5---Solution-Approach">Q5 - Solution Approach<a class="anchor-link" href="#Q5---Solution-Approach">&#182;</a></h3><p>As visible from the above training logs, this network with the choice of hyperparameters was able to achieve 98.57% validation accuracy. There is definitely a possibility of improving the accuracy further by exploring other choices of hyperparameters and adding synthetic data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I would like to highlight that the use of <strong>multiscale convnets</strong> greatly attributed to achieving an <strong>accuracy of 98.57%</strong> on the validation set without any data augmentation.<br>
+Usual ConvNets are organized in strict feed-forward layered architectures in which the output of one layer is fed only to the layer above. 
+However, in this model, the output of the first stage is branched out and fed to the classifier, in addition to the output of the second stage. Additionally, applying a second subsampling stage on the branched output yielded higher accuracies than with just one. This multiscale technique especially helps in recognizing the features of same classes that look similar but vary in scale <a href="https://www.researchgate.net/profile/Yann_Lecun/publication/224260345_Traffic_sign_recognition_with_multi-scale_Convolutional_Networks/links/0912f50f9e763201ab000000/Traffic-sign-recognition-with-multi-scale-Convolutional-Networks.pdf">[1]</a>. <em>Using the same network without multiscale features yielded an accuracy of &lt;95% on the validation set.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I also tried to use the <a href="https://arxiv.org/abs/1506.02025">Spatial Transformer Network</a> module but could not get it to work. STNs have demonstrated the ability of introducing spatial invariance in the networks.</p>
 
 </div>
 </div>
